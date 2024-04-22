@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block content %}
+  <h1>Мой профиль</h1>
+<p>Мой номер телефона: {{ phone }}</p>
+<p>Мой инвайт-код: {{ invite_code }}</p>
+{% if not active %}
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if error %}
+      <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <button type="submit">Активировать</button>
+  </form>
+{% endif %}
+
+  <h2>Пользователи, которые использовали мой инвайт-код:</h2>
+  <ul>
+    {% for number in invite_numbers %}
+      <li>{{ number.who_used_code }}</li>
+    {% endfor %}
+  </ul>
+
+
+
+{% endblock %}

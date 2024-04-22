@@ -1,0 +1,13 @@
+{% extends 'main.html' %}
+
+{% block content %}
+  <h1>Accept</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if error %}
+      <p>{{ error }}</p>
+    {% endif %}
+    <button type="submit">Войти</button>
+  </form>
+{% endblock %}
